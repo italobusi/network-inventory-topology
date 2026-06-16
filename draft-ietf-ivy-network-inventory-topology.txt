@@ -5,12 +5,12 @@
 Network Inventory YANG                                        B. Wu, Ed.
 Internet-Draft                                                    Huawei
 Intended status: Standards Track                            M. Boucadair
-Expires: 19 November 2026                                         Orange
+Expires: 18 December 2026                                         Orange
                                                                  C. Zhou
                                                             China Mobile
                                                                    Q. Wu
                                                                   Huawei
-                                                             18 May 2026
+                                                            16 June 2026
 
 
         A YANG Network Data Model for Inventory Topology Mapping
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 November 2026.
+   This Internet-Draft will expire on 18 December 2026.
 
 Copyright Notice
 
@@ -144,6 +144,8 @@ Table of Contents
 
    This document uses terms defined in
    [I-D.ietf-ivy-network-inventory-yang].
+
+   The document adheres to the folding conventions in [RFC8792].
 
 3.  Sample Use Cases of the Data Model
 
@@ -245,8 +247,8 @@ Table of Contents
 
    The module augments the "ietf-network-topology" module as follows:
 
-   *  Inventory mapping attributes for nodes, and termination points:
-      The corresponding containers augments the topology module with the
+   Inventory mapping attributes for nodes, and termination points:  The
+      corresponding containers augments the topology module with the
       references to the base network inventory
 
 4.1.  Link Extensions
@@ -254,15 +256,19 @@ Table of Contents
    This document adds a lightweight "link-type" leaf to the topology
    link mapping to enable basic physical media classification.
 
-   *  "link-type" – A string indicating the link media type, such as
-      "copper", "fiber", or "coax".  For wireless media, values such as
-      "microwave", or "wlan" may be used
+   "link-type":  An identityref indicating the link media type.
 
-   The "link-type" serves as a lightweight discriminator that guides to
-   the appropriate specialized inventory model for detailed resource
-   information.  For example, wired media (fiber, copper) typically
-   reference a passive network inventory model, such as the one defined
-   in [I-D.ygb-ivy-passive-network-inventory].
+      Examples of wired link types are "copper", "fiber", or "coax".
+      For wireless media, values such as "microwave", or "wlan" may be
+      used.  See also [RFC9656] for more detailed microwave radio
+      attributes.
+
+      The "link-type" serves as a lightweight discriminator that guides
+      to the appropriate specialized inventory model for detailed
+      resource information.  For example, wired media ("fiber" or
+      "copper") typically references a passive network inventory model
+      such as the one defined in
+      [I-D.ygb-ivy-passive-network-inventory].
 
 4.2.  Port-Breakout Capability
 
@@ -304,9 +310,7 @@ Table of Contents
    This module imports the base network inventory
    [I-D.ietf-ivy-network-inventory-yang].
 
-   <CODE BEGINS> file "ietf-network-inventory-topology@2026-02-28.yang"
-   =============== NOTE: '\' line wrapping per RFC 8792 ================
-
+   <CODE BEGINS> file "ietf-network-inventory-topology@2026-05-19.yang"
    module ietf-network-inventory-topology {
      yang-version 1.1;
      namespace
@@ -366,7 +370,7 @@ Table of Contents
         This version of this YANG module is part of RFC XXXX; see
         the RFC itself for full legal notices.";
 
-     revision 2026-02-28 {
+     revision 2026-05-19 {
        description
          "Initial revision.";
        reference
@@ -405,13 +409,15 @@ Table of Contents
        description
          "Microwave-based wireless link.
           Detailed microwave radio attributes are defined in the
-          microwave topology model (RFC 9656).";
+          microwave topology data model.";
+       reference
+         "RFC 9656: A YANG Data Model for Microwave Topology";
      }
 
      identity wlan {
        base link-type;
        description
-         "Wi-Fi (IEEE 802.11) wireless link.";
+         "IEEE 802.11 wireless link.";
      }
 
      identity unknown {
@@ -434,8 +440,8 @@ Table of Contents
 
      augment "/nw:networks/nw:network/nw:network-types" {
        description
-         "Introduces a new network type for inventory topology mapping.\
-                                                                      ";
+         "Introduces a new network type for inventory topology
+          mapping.";
        container inventory-topology {
          presence
            "Indicates this is a bottom-most physical topology instance,
@@ -446,7 +452,8 @@ Table of Contents
             When present, it signals that the network contains
             physical-layer augmentations as defined in this module.
             This network type is intended to serve as the underlay
-            for logical network topologies (L2, L3, TE, etc.).";
+            for logical network topologies (Layer 2, Layer 3,
+            Traffic Engineering (TE), etc.).";
        }
      }
 
@@ -495,19 +502,19 @@ Table of Contents
              base link-type;
            }
            description
-             "Classification of the link media type at the topology \
-                                                                  layer.
-              The base identity 'link-type' is extensible; currently \
-                                                                 defined
-              derived identities include 'copper', 'fiber', 'coax',
-              'microwave', and 'wlan'.
+             "Classification of the link media type at the topology
+              layer.
 
-              This leaf serves as a lightweight discriminator.  When the
-              value is 'microwave', detailed microwave link attributes
-              are defined in the microwave topology data model.
-              Wired media (e.g., fiber, copper, or coax) may be \
-                                                             detailed in
-             a passive network inventory data model.";
+              The base identity 'link-type' is extensible. Examples
+              of derived identities include 'copper', 'fiber',
+              'coax', 'microwave', and 'wlan'.
+
+              This leaf serves as a lightweight discriminator.  When
+              the value is 'microwave', detailed microwave link
+              attributes are defined in the microwave topology data
+              model. Wired media (e.g., fiber, copper, or coax) may
+              be detailed in a passive network inventory data
+              model.";
          }
        }
      }
@@ -659,9 +666,9 @@ Table of Contents
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
               Bedard, "A Base YANG Data Model for Network Inventory",
               Work in Progress, Internet-Draft, draft-ietf-ivy-network-
-              inventory-yang-17, 13 May 2026,
+              inventory-yang-18, 27 May 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-yang-17>.
+              network-inventory-yang-18>.
 
    [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
               DOI 10.17487/RFC3688, January 2004,
@@ -696,8 +703,8 @@ Table of Contents
               Havel, O., Claise, B., de Dios, O. G., and T. Graf,
               "SIMAP: Concept, Requirements, and Use Cases", Work in
               Progress, Internet-Draft, draft-ietf-nmop-simap-concept-
-              10, 31 March 2026, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-nmop-simap-concept-10>.
+              11, 3 June 2026, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-nmop-simap-concept-11>.
 
    [I-D.ietf-tls-rfc8446bis]
               Rescorla, E., "The Transport Layer Security (TLS) Protocol
@@ -719,9 +726,9 @@ Table of Contents
               Guo, A., van caenegem, T., Davis, N., Tilocca, M., and B.
               Peters, "A YANG Data Model for Passive Network Inventory",
               Work in Progress, Internet-Draft, draft-ygb-ivy-passive-
-              network-inventory-04, 2 March 2026,
+              network-inventory-05, 26 May 2026,
               <https://datatracker.ietf.org/doc/html/draft-ygb-ivy-
-              passive-network-inventory-04>.
+              passive-network-inventory-05>.
 
    [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
               Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
@@ -749,6 +756,11 @@ Table of Contents
               for Layer 3 Topologies", RFC 8346, DOI 10.17487/RFC8346,
               March 2018, <https://www.rfc-editor.org/rfc/rfc8346>.
 
+   [RFC8792]  Watsen, K., Auerswald, E., Farrel, A., and Q. Wu,
+              "Handling Long Lines in Content of Internet-Drafts and
+              RFCs", RFC 8792, DOI 10.17487/RFC8792, June 2020,
+              <https://www.rfc-editor.org/rfc/rfc8792>.
+
    [RFC8944]  Dong, J., Wei, X., Wu, Q., Boucadair, M., and A. Liu, "A
               YANG Data Model for Layer 2 Network Topologies", RFC 8944,
               DOI 10.17487/RFC8944, November 2020,
@@ -758,6 +770,11 @@ Table of Contents
               Q., and V. Lopez, "A YANG Network Data Model for Service
               Attachment Points (SAPs)", RFC 9408, DOI 10.17487/RFC9408,
               June 2023, <https://www.rfc-editor.org/rfc/rfc9408>.
+
+   [RFC9656]  Mansfield, S., Ed., Ahlberg, J., Ye, M., Li, X., and D.
+              Spreafico, "A YANG Data Model for Microwave Topology",
+              RFC 9656, DOI 10.17487/RFC9656, September 2024,
+              <https://www.rfc-editor.org/rfc/rfc9656>.
 
    [RFC9907]  Bierman, A., Boucadair, M., Ed., and Q. Wu, "Guidelines
               for Authors and Reviewers of Documents Containing YANG
