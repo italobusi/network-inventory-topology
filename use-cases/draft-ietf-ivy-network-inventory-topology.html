@@ -1059,7 +1059,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Wu, et al.</td>
-<td class="center">Expires 18 December 2026</td>
+<td class="center">Expires 19 December 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1072,12 +1072,12 @@ svg {
 <dd class="internet-draft">draft-ietf-ivy-network-inventory-topology-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-06-16" class="published">16 June 2026</time>
+<time datetime="2026-06-17" class="published">17 June 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-12-18">18 December 2026</time></dd>
+<dd class="expires"><time datetime="2026-12-19">19 December 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1140,7 +1140,7 @@ network maintenance, and capacity planning.<a href="#section-abstract-1" class="
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 18 December 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 19 December 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1187,10 +1187,10 @@ network maintenance, and capacity planning.<a href="#section-abstract-1" class="
                 <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-determine-available-resourc" class="internal xref">Determine Available Resources of Service Attachment Points (SAPs)</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-what-if-scenarios" class="internal xref">"What-if" Scenarios</a></p>
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-multi-layer-network-navigat" class="internal xref">Multi-layer network navigation</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
-                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-multi-layer-networks" class="internal xref">Multi-layer Networks</a></p>
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-what-if-scenarios" class="internal xref">"What-if" Scenarios</a></p>
 </li>
             </ul>
 </li>
@@ -1336,7 +1336,7 @@ the orchestrator flags the request for manual intervention,
 providing the operator with precise inventory information
 about the bottleneck (e.g., "Port GE0/6/1 on NE-PE1 is at 95% utilization").
 The resource constraint can also feed into a "what-if" analysis
-(see <a href="#sec-whatif" class="auto internal xref">Section 3.2</a>) to evaluate hardware upgrades or
+(see <a href="#sec-whatif" class="auto internal xref">Section 3.3</a>) to evaluate hardware upgrades or
 alternative underlay paths.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 <span id="name-an-example-usage-of-network"></span><div id="nwi-topology-usage">
 <figure id="figure-1">
@@ -1404,44 +1404,37 @@ alternative underlay paths.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
-<div id="sec-whatif">
+<div id="multi-layer-network-navigation">
 <section id="section-3.2">
-        <h3 id="name-what-if-scenarios">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-what-if-scenarios" class="section-name selfRef">"What-if" Scenarios</a>
+        <h3 id="name-multi-layer-network-navigat">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-multi-layer-network-navigat" class="section-name selfRef">Multi-layer network navigation</a>
         </h3>
-<p id="section-3.2-1"><span>[<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span> defines Network Digital Twin (NDT)
+<p id="section-3.2-1">A multi-layer network encompasses multiple layers (e.g., Layer 2 and Layer 3 layers, or Optical Transport Network (OTN) and Wavelength Division Multiplexing (WDM) layers).<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">A multi-layer network topology can comprises nodes, links and termination points that can belong to different layers.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">A multi-layer network can contain multiple types of topological elements which can be physical (and associated with an inventory element) or logical (and associated with topology elements in the underlay layer).<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.2-4">The topology models support navigation across the different layers, down to the physical layer, as defined in <span><a href="https://rfc-editor.org/rfc/rfc8345#section-4.4.9" class="relref">Section 4.4.9</a> of [<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>. The navigation between the physical layer amd the network inventory is outside the scope of the topology models and addressed in this document.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-whatif">
+<section id="section-3.3">
+        <h3 id="name-what-if-scenarios">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-what-if-scenarios" class="section-name selfRef">"What-if" Scenarios</a>
+        </h3>
+<p id="section-3.3-1"><span>[<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span> defines Network Digital Twin (NDT)
    as a virtual representation of the physical network.  Such
     representation is meant to be used to analyze,
    diagnose, emulate, and then manage the physical network based on
-   data, models, and interfaces.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2"><span>[<a href="#I-D.ietf-nmop-simap-concept" class="cite xref">I-D.ietf-nmop-simap-concept</a>]</span> defines Service and Infrastructure Maps (SIMAP)
+   data, models, and interfaces.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2"><span>[<a href="#I-D.ietf-nmop-simap-concept" class="cite xref">I-D.ietf-nmop-simap-concept</a>]</span> defines Service and Infrastructure Maps (SIMAP)
  as an abstraction model that provides a unified view of both service and
  infrastructure information, enabling correlation between service requirements
- and underlying resource capabilities.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
-<p id="section-3.2-3">Both architectures require accurate mapping between logical network topology
+ and underlying resource capabilities.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">Both architectures require accurate mapping between logical network topology
  and physical inventory as a foundational data layer. This model provides
  the essential physical resource information to such systems, enabling
  them to perform accurate "what-if" analysis (e.g., impact prediction
  of hardware End-of-Life, path re-optimization under resource constraints, service
- availability assessment).<a href="#section-3.2-3" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="multi-layer-networks">
-<section id="section-3.3">
-        <h3 id="name-multi-layer-networks">
-<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-multi-layer-networks" class="section-name selfRef">Multi-layer Networks</a>
-        </h3>
-<p id="section-3.3-1">A multi-layer network encompasses multiple layers (e.g., Layer 2 and Layer 3 layers, or Optical Transport Network (OTN) and Wavelength Division Multiplexing (WDM) layers).<a href="#section-3.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.3-2">A multi-layer network topology can comprises nodes, links and termination points that can belong to different layers.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
-<p id="section-3.3-3">An multi-layer network can contain multiple node, link and termination types, including physical nodes, links and termination points, which can be associated to components within the network inventory, and hierarchical links, which are supported by underlay paths (or TE tunnels) in the serer layer.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
-<p id="section-3.3-4">Modelling the relationship between a link and its underlay paths is in the scope of the topology models and therefore outside the scope of this document.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
-<p id="section-3.3-5">The YANG data model defined in this document can be used to model the relationship between physical nodes and termination points and their associated network elements and port components within the network inventory YANG data model, defined in <span>[<a href="#I-D.ietf-ivy-network-inventory-yang" class="cite xref">I-D.ietf-ivy-network-inventory-yang</a>]</span>.<a href="#section-3.3-5" class="pilcrow">¶</a></p>
-<p id="section-3.3-6">The following figure shows, as an example, an optical network encompassing Optical Transport Network (OTN) and Wavelength Division Multiplexing (WDM) layers.<a href="#section-3.3-6" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-3.3-7.1">
-            <p id="section-3.3-7.1.1">Note: example to be completed<a href="#section-3.3-7.1.1" class="pilcrow">¶</a></p>
-</li>
-        </ul>
+ availability assessment).<a href="#section-3.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
